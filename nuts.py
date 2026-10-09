@@ -27,6 +27,7 @@ else:
 #Задание 3
 print('Задание 3')
 import random
+
 letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 numbers = '0123456789'
 symvols ="!@#$%^&*"
