@@ -4,18 +4,17 @@ from decimal import Decimal
 DATE_FORMAT = '%Y-%m-%d'
 goods = {
     'Молоко': [
-                {'amount': Decimal('1'), 'expiration_date':
-                 datetime.date(2026, 10, 9)}
-            ],
-            'Яйца': [
-                {'amount': Decimal('10'), 'expiration_date':
-                 datetime.date(2026,10, 12)}
-    
-            ],
-            'Вода': [
-                {'amount': Decimal('1.5'), 'expiration_date':
-                 None}
-            ]
+        {'amount': Decimal('1'), 'expiration_date':
+         datetime.date(2026, 10, 9)}
+    ],
+    'Яйца': [
+        {'amount': Decimal('10'), 'expiration_date':
+         datetime.date(2026,10, 12)}
+    ],
+    'Вода': [
+        {'amount': Decimal('1.5'), 'expiration_date':
+         None}
+    ]
 
 }
 
