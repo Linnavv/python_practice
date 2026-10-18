@@ -1,40 +1,47 @@
+"""
+Программа генерирует случайный пароль
+заданной длины с выбранными типами символов.
+Пользователь может выбрать строчные и заглавные
+буквы, цифры и специальные символы.
+"""
+
 import random
 
-print('=' * 35)
-print('      ГЕНЕРАТОР ПАРОЛЕЙ')
-print('=' * 35)
+print("=" * 35)
+print("      ГЕНЕРАТОР ПАРОЛЕЙ")
+print("=" * 35)
 
-length = int(input('Введите длину пароля: '))
+length = int(input("Введите длину пароля: "))
 
-lower = input('Строчные буквы? (да/нет): ').lower()
-upper = input('Заглавные буквы? (да/нет): ').lower()
-digits = input('Цифры? (да/нет): ').lower()
-special = input('Спецсимволы? (да/нет): ').lower()
+lower = input("Строчные буквы? (да/нет): ").lower()
+upper = input("Заглавные буквы? (да/нет): ").lower()
+digits = input("Цифры? (да/нет): ").lower()
+special = input("Спецсимволы? (да/нет): ").lower()
 
-characters = ''
+characters = ""
 
-if lower == 'да':
-    characters += 'abcdefghijklmnopqrstuvwxyz'
+if lower == "да":
+    characters += "abcdefghijklmnopqrstuvwxyz"
 
-if upper == 'да':
-    characters += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+if upper == "да":
+    characters += "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
-if digits == 'да':
-    characters += '0123456789'
+if digits == "да":
+    characters += "0123456789"
 
-if special == 'да':
-    characters += '!@#$%&*?'
+if special == "да":
+    characters += "!@#$%&*?"
 
-if characters == '':
-    print('Вы не выбрали ни одного типа символов!')
+if characters == "":
+    print("Вы не выбрали ни одного типа символов!")
 elif length <= 0:
-    print('Длина пароля должна быть больше нуля!')
+    print("Длина пароля должна быть больше нуля!")
 else:
-    password = ''
+    password = ""
 
     for i in range(length):
         password += random.choice(characters)
 
-    print('=' * 35)
-    print('Ваш пароль:', password)
-    print('=' * 35)
+    print("=" * 35)
+    print("Ваш пароль:", password)
+    print("=" * 35)
