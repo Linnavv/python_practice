@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Pokémon Team Manager</title>
+</head>
+<body>
+
+    <h1>Pokémon Team Manager</h1>
+
+    <h2>Найти покемона</h2>
+
+    <form method="GET">
+        <input type="text" name="search" placeholder="Имя покемона">
+        <button type="submit">Найти</button>
+    </form>
+
+    {% if search_result %}
+        <h3>{{ search_result.name|title }}</h3>
+        <img src="{{ search_result.sprites.front_default }}" alt="Покемон">
+        <p>Тип: {{ search_result.types.0.type.name }}</p>
+        <p>Рост: {{ search_result.height }}</p>
+        <p>Вес: {{ search_result.weight }}</p>
+    {% endif %}
+
+    {% if search_error %}
+        <p>{{ search_error }}</p>
+    {% endif %}
+
+    <hr>
+
+    <h2>Добавить покемона</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="name" placeholder="Введите имя покемона">
+        <button type="submit">Добавить</button>
+    </form>
+
+    {% if message %}
+        <p>{{ message }}</p>
+    {% endif %}
+
+    <h2>Моя команда</h2>
+
+    <p>
+    <a href="{% url 'battle' %}">Перейти к тренировочному бою</a>
+    </p>
+
+    {% if team %}
+        {% for pokemon in team %}
+            <div>
+                <h3>{{ pokemon.name|title }}</h3>
+
+                <img src="{{ pokemon.image }}" alt="{{ pokemon.name }}">
+
+                <p>Тип: {{ pokemon.pokemon_type }}</p>
+                <p>Рост: {{ pokemon.height }}</p>
+                <p>Вес: {{ pokemon.weight }}</p>
+                <p>Базовый опыт: {{ pokemon.base_experience }}</p>
+
+                <h4>Способности:</h4>
+                <ul>
+                    {% for ability in pokemon.abilities %}
+                        <li>{{ ability }}</li>
+                    {% endfor %}
+                </ul>
+
+                <h4>Характеристики:</h4>
+                <ul>
+                    {% for stat, value in pokemon.stats.items %}
+                        <li>{{ stat }}: {{ value }}</li>
+                    {% endfor %}
+                </ul>
+
+                <form method="POST" action="{% url 'delete_pokemon' pokemon.id %}">
+                    {% csrf_token %}
+                    <button type="submit">Удалить</button>
+                </form>
+            </div>
+            <hr>
+        {% endfor %}
+    {% else %}
+        <p>Команда пока пуста.</p>
+    {% endif %}
+
+</body>
+</html>
