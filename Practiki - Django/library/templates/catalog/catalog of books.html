@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Все посты - <BlogSite>{% endblock %}
+
+{% block content %}
+<h2>Самая популярная книга на Краснобашкирском</h2>
+
+{% for book in books %}
+<article class="book">
+    <h3>{{ post.title|title }}</h3>
+    <p class="date">Дата издания: </p>
+</article>
